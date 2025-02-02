@@ -1,7 +1,7 @@
 [project]
 name = "django-runprod"
 version = "0.1.0"
-description = "Add your description here"
+description = "Django management command to run WSGI server for production. Also support serving static files through WhiteNoise."
 readme = "README.md"
 authors = [
     { name = "kamal", email = "kamal@koditi.my" }
