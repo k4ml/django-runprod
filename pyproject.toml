@@ -1,6 +1,6 @@
 [project]
 name = "django-runprod"
-version = "0.1.0"
+version = "0.1.1"
 description = "Django management command to run WSGI server for production. Also support serving static files through WhiteNoise."
 readme = "README.md"
 authors = [
