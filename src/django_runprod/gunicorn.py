@@ -1,6 +1,6 @@
 import os
 
-def run_gunicorn(address, use_sentry, sentry_env, serve_static=False, reload_=False):
+def run_gunicorn(address, use_sentry, sentry_env, serve_static=False, reload_=False, workers=None):
     import sentry_sdk
     import multiprocessing
     from django.conf import settings
@@ -46,7 +46,7 @@ def run_gunicorn(address, use_sentry, sentry_env, serve_static=False, reload_=Fa
 
     options = {
         "bind": address,
-        "workers": (multiprocessing.cpu_count() * 2) + 1,
+        "workers": workers or (multiprocessing.cpu_count() * 2) + 1,
         "accesslog": "-",
         "reload": reload_,
     }

@@ -34,6 +34,12 @@ class Command(BaseCommand):
             action='store_true',
             help='Enable auto-reload on code changes'
         )
+        parser.add_argument(
+            '-w',
+            '--workers',
+            default=None,
+            help='Number of workers. Default to num of cpu * 2 + 1'
+        )
 
     def handle(self, *args, **options):
         try:
@@ -42,6 +48,7 @@ class Command(BaseCommand):
             sentry_env = options['sentry_env']
             serve_static = options['serve_static']
             reload_ = options['reload']
+            workers = options["workers"]
 
             self.stdout.write(
                 self.style.SUCCESS(f'Starting Gunicorn server on {address}')
@@ -67,7 +74,8 @@ class Command(BaseCommand):
                 use_sentry=use_sentry,
                 sentry_env=sentry_env,
                 serve_static=serve_static,
-                reload_=reload_
+                reload_=reload_,
+                workers=workers,
             )
         except Exception as e:
             raise CommandError(f'Error starting Gunicorn server: {str(e)}')
